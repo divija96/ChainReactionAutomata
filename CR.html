@@ -1,0 +1,60 @@
+ <html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="CR.css">
+	<script src="CR.js"></script>
+	<style type="text/css">
+		.menu
+		{
+			margin: 190px;
+			text-align: center;
+			background-color: #CCEBF7;
+			padding: 20px;
+		}
+		#ud
+		{
+			position: absolute;
+			background-color: #CCEBF7;
+			top:0px;
+			right: 0px;
+		}
+	</style>
+	<script type="text/javascript">
+		function dispFields(){
+			tmp = document.getElementById('menu');
+			tmp.style.display = "block";
+		}
+		function grabVals(){
+			total_users = parseInt('2');
+			grid_sz = parseInt(document.getElementById('dims').value);
+			cell_sz = Math.floor(640/grid_sz);
+			img_sz = Math.ceil((cell_sz -2)/ 1.414);
+			animateRadius = Math.floor(cell_sz/4);
+			tmp = document.getElementById('myCanvas');
+			tmp.style.display="block";
+			tmp.addEventListener("mousedown", getpos, false);
+			ctx=tmp.getContext("2d");
+			setInterval(startt,200);
+			tmp = document.getElementById('menu');
+			tmp.style.display = "none";
+			createArrays();
+			paint_Lines(color_Array[1]);
+		}
+	</script>
+	</head>
+	<body onLoad="dispFields()">
+			<img src="3.png" class="im" id="3"></img>
+			<img src="2.png" class="im" id="2"></img>
+			<img src="1.png" class="im" id="1"></img>
+			<div id="menu" class="menu">
+				Dimensions&nbsp;<input id="dims" type="text"/><br><br>
+				<button onclick="grabVals()">Go!</button>
+			</div>
+
+			<canvas id="myCanvas" style="display:none" width="640" height="640" ></canvas>
+			
+			<div id="ud" style="display:none;">
+				<button onclick="undo()">Undo</button>
+			</div>
+
+	</body>
+</html>
